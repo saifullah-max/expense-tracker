@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { History } from '../History/History'
 import './IncomeExpense.css'
 import { TransactionContext } from '../Transactions/TransactionContext'
 

@@ -3,14 +3,21 @@ import './history.css'
 import { TransactionContext } from '../Transactions/TransactionContext'
 
 export const History = ({submittedText, submittedNum}) => {
-    const { transactions } = useContext(TransactionContext)
+    const { transactions, setTransactions } = useContext(TransactionContext)
     const [history, setHistory] = useState([])
 
     useEffect(() => {
         if (submittedText && submittedNum) {
             setHistory (prev => [...prev, {text: submittedText, amount: submittedNum}])
         }
-    }, [submittedText, submittedNum])
+    }, [submittedText, submittedNum, setTransactions])
+
+    const handleRemoveLatest = () => {
+        if (transactions.length > 0){
+            setTransactions(transactions.slice(0, -1));
+            setHistory(history.slice(0, -1))
+        }
+    }
 
   return (
     <div>
@@ -23,6 +30,7 @@ export const History = ({submittedText, submittedNum}) => {
                 </li>
             )}
             </ul>
+            <button className='button' type='submit' onClick={handleRemoveLatest}>Delete recent entry</button>
         </div>
     </div>
   )

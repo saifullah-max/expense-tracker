@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { Header } from '../Header/Header'
 import { History } from '../History/History'
 import { TransactionContext } from './TransactionContext'
@@ -15,6 +15,7 @@ export const Transactions = () => {
 
     const textHandler = (e) => {
         setInputText(e.target.value)
+        
     }
     const numberHandler = (e) => {
         setInputNum(e.target.value);
@@ -26,14 +27,22 @@ export const Transactions = () => {
         setSubmittedNum(inputNum)
         setInputNum('')
         addTransaction(inputText, parseFloat(inputNum))
-        
     }
+
+    const textInputRef = useRef(null);
+
+    useEffect(() => {
+        if (textInputRef.current) {
+            textInputRef.current.focus();
+        }
+    }, []);
+
   return (
     <div >
         <div className='transactionForm'>
         <form onSubmit={submitHandler}>
             <div className='form__inputs'>
-        <input type='text' onChange={textHandler} value={inputText} placeholder='Enter amount purpose...' className='form__textInput'/>
+        <input type='text' onChange={textHandler} ref={textInputRef} value={inputText} placeholder='Enter amount purpose...' className='form__textInput'/>
         <input type='number' onChange={numberHandler} value={inputNum} placeholder='Enter amount...' className='form__numberInput'/>
         <button type='submit' className='button'>Submit</button>
              </div>
