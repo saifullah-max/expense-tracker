@@ -23,7 +23,7 @@ export const History = ({submittedText, submittedNum}) => {
     <div>
         <div className='history'>
             <h5>All Time Transaction History</h5>
-            <ul>
+            <ul className='history__ul'>
                 {history.map((item, index) => 
                 <li key={index} className={item.amount > 0 ? 'income' : 'expense'}>
                     {item.text} {item.amount}

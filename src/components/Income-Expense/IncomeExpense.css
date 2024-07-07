@@ -11,7 +11,7 @@
 }
 .box__inside {
     box-shadow: 2px 3px 13px -2px rgba(0,0,0,0.48);
-    width: 27vw;
+    width: 200px;
     height: 120px;
     display: flex;
 }
@@ -20,24 +20,45 @@
     justify-content: space-evenly;
     flex-direction: column;
     /* align-items: flex-start; */
-    width: 15vw;
+    width: 100px;
+    
 }
 .box__income h2 {
     margin: 0;
     padding: 0;
     color: green;
     font-weight: bolder;
+    font-size: 15px;
+
 }
 .box__expense {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
     /* align-items: flex-start; */
-    width: 15vw;
+    width: 100px;
 }
 .box__expense  h2 {
     margin: 0;
     padding: 0;
     color: red;
     font-weight: bolder;
+    font-size: 15px;
+
+}
+
+@media screen and(max-width: 550px) {
+    .box__inside {
+        width: 150px;
+        height: 150px;
+    }
+    .box__income {
+        width: 70px;
+    }
+    .box__expense {
+        width: 70px;
+    }
+    .box__income h2 {
+        font-size: 20px;
+    }
 }
