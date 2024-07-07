@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import './history.css'
+import { TransactionContext } from '../Transactions/TransactionContext'
 
-export const History = ({submittedText, submittedNum, transactionNumber}) => {
+export const History = ({submittedText, submittedNum}) => {
+    const { transactions } = useContext(TransactionContext)
     const [history, setHistory] = useState([])
 
     useEffect(() => {
@@ -8,18 +11,14 @@ export const History = ({submittedText, submittedNum, transactionNumber}) => {
             setHistory (prev => [...prev, {text: submittedText, amount: submittedNum}])
         }
     }, [submittedText, submittedNum])
+
   return (
     <div>
-        <div>
-        Recent Transaction History:
-        <h3>Transaction {transactionNumber}:</h3>
-        <p>{submittedText} {submittedNum}</p>
-        </div>
-        <div>
+        <div className='history'>
             <h5>All Time Transaction History</h5>
             <ul>
                 {history.map((item, index) => 
-                <li key={index}>
+                <li key={index} className={item.amount > 0 ? 'income' : 'expense'}>
                     {item.text} {item.amount}
                 </li>
             )}
